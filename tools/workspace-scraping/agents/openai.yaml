@@ -1,0 +1,3 @@
+display_name: Workspace Scraping
+short_description: 用于本数据爬取工作区的项目初始化、变量确认和采集验收流程
+default_prompt: 在本数据爬取工作区中创建或执行一个爬取子项目。
