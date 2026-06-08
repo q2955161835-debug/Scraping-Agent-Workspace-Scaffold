@@ -23,7 +23,7 @@ Use this skill only for this data scraping workspace. It turns the root `AGENTS.
 2. Create default second-level folders: `doc/`、`旧数据/`、`原始数据/`、`原始文件/`、`try/`.
 3. Add extension folders only when the target needs them; document each extension folder in the target project's `doc/目录说明.md`.
 4. Build the variable confirmation table before crawler work. Required columns: variable name, meaning, unit, data type, source priority, required flag, cleaning rule, acceptable missing condition, note.
-5. Assign channel subagents by source type: official source, official news, third-party news, literature, reverse calculation, weak-source verification, and final aggregation.
+5. Build a variable-channel matrix and assign channel subagents by source type: official source, official news, third-party news, literature, reverse calculation, weak-source verification, and final aggregation.
 6. Store raw structured results in `原始数据/`; store downloaded files or snapshots in `原始文件/`; store temporary experiments in `try/`.
 7. Put the newest cleaned dataset in the target project root and archive replaced versions in `旧数据/`.
 
@@ -55,5 +55,5 @@ Use this skill only for this data scraping workspace. It turns the root `AGENTS.
 
 ## References
 
-- Read `references/channel-playbook.md` when a target has multiple source channels or needs subagent assignment.
+- Read `references/channel-playbook.md` when a target has multiple source channels, needs subagent assignment, has missing required fields, or has conflicting values across sources.
 - Read `references/dataset-acceptance.md` before final handoff or when validating scraped data.
