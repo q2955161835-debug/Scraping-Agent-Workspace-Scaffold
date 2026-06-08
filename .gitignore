@@ -5,10 +5,11 @@ __pycache__/
 *.pyc
 .pytest_cache/
 .cache/
-try/
+try/*
 **/try/*
 !脚手架/templates/**/try/
 !脚手架/templates/**/try/.gitkeep
+!try/.gitkeep
 dist/
 build/
 *.egg-info/
