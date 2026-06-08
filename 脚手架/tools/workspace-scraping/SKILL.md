@@ -11,9 +11,10 @@ Use this skill only for this data scraping workspace. It turns the root `AGENTS.
 
 ## First Actions
 
-- Read root `AGENTS.md`（代理说明文件） before changing project structure or starting collection.
+- When this scaffold is embedded under `脚手架/`, read the workspace wrapper `../AGENTS.md`（代理说明文件） first, then this scaffold's `AGENTS.md`（代理说明文件）.
+- When this scaffold is used standalone, read root `AGENTS.md`（代理说明文件） before changing project structure or starting collection.
 - Check `git status --short --branch` before edits. If the change is structural or broad, create a checkpoint commit first.
-- For a new target project, run or mirror `tools/scripts/scaffold_project.py` or `tools/scripts/New-ScrapingProject.ps1`.
+- For a new target project, run or mirror `tools/scripts/scaffold_project.py` or `tools/scripts/New-ScrapingProject.ps1`; if embedded, pass `--root ..` or an equivalent parent workspace path.
 - Before scraping, create a blank variable confirmation table with `tools/scripts/create_variable_template.py` or `tools/scripts/New-VariableTemplate.ps1`, then wait for user confirmation.
 
 ## Target Project Workflow

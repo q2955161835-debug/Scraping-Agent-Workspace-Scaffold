@@ -4,30 +4,34 @@ param(
 
 $errors = New-Object System.Collections.Generic.List[string]
 
+$projectMapFile = (-join ([char[]](0x9879, 0x76ee, 0x5730, 0x56fe))) + '.md'
+$progressFile = (-join ([char[]](0x8fdb, 0x5c55, 0x8bb0, 0x5f55))) + '.md'
+$toolsGuideFile = (-join ([char[]](0x5de5, 0x5177, 0x5e93, 0x8bf4, 0x660e))) + '.md'
+
 foreach ($required in @(
   'AGENTS.md',
   'README.md',
   'pyproject.toml',
   '.env.example',
-  'doc\项目地图.md',
-  'doc\进展记录.md',
-  'tools\工具库说明.md',
+  "doc\$projectMapFile",
+  "doc\$progressFile",
+  "tools\$toolsGuideFile",
   'tools\workspace-scraping\SKILL.md',
   'tools\scripts\scaffold_project.py',
   'tools\scripts\create_variable_template.py',
   'tools\scripts\validate_workspace.py',
-  'templates\standard-scraping-project\doc\项目地图.md'
+  "templates\standard-scraping-project\doc\$projectMapFile"
 )) {
   $path = Join-Path $Root $required
   if (-not (Test-Path -LiteralPath $path)) {
-    $errors.Add("缺少必需文件：$required")
+    $errors.Add("missing required file: $required")
   }
 }
 
 foreach ($skill in @('scrapling', 'spreadsheets', 'markitdown-skill', 'multi-search-engine', 'external-skills-hub', 'skill-creator')) {
   $path = Join-Path $Root "tools\skills\$skill"
   if (-not (Test-Path -LiteralPath $path)) {
-    Write-Output "WARN`t缺少本地技能软连接：tools\skills\$skill，可运行 tools\scripts\Link-Skills.ps1 重建"
+    Write-Output "WARN`tmissing local skill link: tools\skills\$skill; run tools\scripts\Link-Skills.ps1 to rebuild"
   }
 }
 
@@ -56,7 +60,7 @@ $rootItems = Get-ChildItem -LiteralPath $Root -Force | Where-Object {
 }
 
 foreach ($item in $rootItems) {
-  $errors.Add("根目录存在非工作区级文件：$($item.Name)")
+  $errors.Add("unexpected root file: $($item.Name)")
 }
 
 if ($errors.Count -gt 0) {
@@ -64,4 +68,4 @@ if ($errors.Count -gt 0) {
   exit 1
 }
 
-Write-Output "OK`t工作区结构检查通过"
+Write-Output "OK`tworkspace structure check passed"

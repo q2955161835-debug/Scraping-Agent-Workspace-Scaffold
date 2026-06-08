@@ -7,8 +7,8 @@ __pycache__/
 .cache/
 try/
 **/try/*
-!templates/**/try/
-!templates/**/try/.gitkeep
+!脚手架/templates/**/try/
+!脚手架/templates/**/try/.gitkeep
 dist/
 build/
 *.egg-info/
@@ -16,3 +16,5 @@ build/
 venv/
 tools/skills/*
 !tools/skills/README.md
+脚手架/tools/skills/*
+!脚手架/tools/skills/README.md

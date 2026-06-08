@@ -1,66 +1,22 @@
-# Scraping Agent Workspace Scaffold（数据爬取 Agent 工作区脚手架）
+# 数据爬取 Agent 工作区
 
-一个面向数据爬取任务的 AI（人工智能）工作区脚手架。它把 `AGENTS.md`（代理说明文件）、Scrapling（网页抓取库）、变量确认表、渠道子代理分工、质量分级、模板项目和校验脚本组合成可复用的数据采集起点。
+当前目录是实际数据爬取工作区外壳，脚手架已拆分到根目录下的 `脚手架/`。
 
-## 适用场景
+## 当前结构
 
-- 为一个新数据目标快速创建标准爬取子项目。
-- 在正式爬虫前先生成变量确认表，避免字段口径反复变更。
-- 按来源质量派遣子 `agent`（代理）：官方、新闻、论文、逆向计算、论坛等。
-- 使用 Scrapling（网页抓取库）的 `Fetcher`（基础抓取器）、`DynamicFetcher`（动态抓取器）、`StealthyFetcher`（隐身抓取器）和 `Spider`（爬虫框架）建立可扩展采集流程。
-- 将原始数据、原始文件、旧数据、最新版数据和项目文档放到稳定位置。
-
-## 快速开始
-
-```powershell
-git clone https://github.com/q2955161835-debug/Scraping-Agent-Workspace-Scaffold.git
-cd Scraping-Agent-Workspace-Scaffold
-python -m pip install -e .[dev,scraping]
-python tools/scripts/scaffold_project.py "示例目标数据"
-python tools/scripts/create_variable_template.py "示例目标数据"
-python tools/scripts/validate_workspace.py .
-```
-
-Windows（微软视窗系统）也可以使用 PowerShell（微软命令行脚本）版本：
-
-```powershell
-.\tools\scripts\New-ScrapingProject.ps1 -Name "示例目标数据"
-.\tools\scripts\New-VariableTemplate.ps1 -ProjectPath ".\示例目标数据"
-.\tools\scripts\Test-ScrapingWorkspace.ps1
-```
-
-## 核心目录
-
-- `AGENTS.md`：工作区级规则入口。
+- `AGENTS.md`：工作区外壳规则入口。
 - `doc/`：工作区项目地图和进展记录。
-- `tools/`：工具库，包含技能软连接、复用脚本和工作区专用技能。
-- `templates/standard-scraping-project/`：标准爬取子项目模板。
-- `examples/`：Scrapling（网页抓取库）最小示例。
-- `.github/workflows/validate.yml`：GitHub Actions（GitHub 自动化流程）结构校验。
+- `脚手架/`：独立脚手架，包含 `Scrapling`（网页抓取库）示例、模板、脚本、测试和工作区专用技能。
+- `agent-reach/`：已预留的整合子项目目录，等待导入原始项目内容。
+- `try/`：工作区级临时验证目录。
 
-## 标准流程
+## 常用入口
 
-1. 创建目标子项目。
-2. 生成变量确认表。
-3. 用户确认变量表。
-4. 按渠道分派子 `agent`（代理）和采集策略。
-5. 使用 Scrapling（网页抓取库）采集数据。
-6. 原始结果归档到 `原始数据/` 或 `原始文件/`。
-7. 清洗、合并、去重、质量分级。
-8. 将最新版数据放入子项目根目录。
+```powershell
+cd .\脚手架
+python tools\scripts\validate_workspace.py .
+python tools\scripts\scaffold_project.py "示例目标数据" --root ..
+python tools\scripts\create_variable_template.py "..\示例目标数据"
+```
 
-详细规则见 [AGENTS.md](AGENTS.md)；工具库细则见 [tools/工具库说明.md](tools/%E5%B7%A5%E5%85%B7%E5%BA%93%E8%AF%B4%E6%98%8E.md)。
-
-## 数据质量分级
-
-官方 > 官方新闻 > 第三方新闻 > 论文 > 各种渠道逆向计算出的数据 > 论坛 > 其他渠道。
-
-## Scrapling 示例
-
-- [examples/basic_fetcher.py](examples/basic_fetcher.py)：静态页面抓取。
-- [examples/dynamic_fetcher.py](examples/dynamic_fetcher.py)：需要 JavaScript（脚本）渲染的页面。
-- [examples/spider_template.py](examples/spider_template.py)：分页或批量采集模板。
-
-## 发布状态
-
-目标仓库：<https://github.com/q2955161835-debug/Scraping-Agent-Workspace-Scaffold>
+系统 `python.exe`（Python 解释器）不可用时，可改用 Codex（代码代理）内置 Python（Python 语言）路径执行同样命令。
