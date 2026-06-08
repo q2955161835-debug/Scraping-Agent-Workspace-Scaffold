@@ -16,5 +16,3 @@ build/
 venv/
 tools/skills/*
 !tools/skills/README.md
-脚手架/tools/skills/*
-!脚手架/tools/skills/README.md

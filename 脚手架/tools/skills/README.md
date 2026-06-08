@@ -1,20 +1,18 @@
-# Skills Link Library（技能软连接库）
+# Skills Library（技能库）
 
-本目录用于本地放置常用 `skill`（技能）的软连接。GitHub（代码托管平台）仓库不提交指向本机绝对路径的软连接，避免其他机器 clone（克隆）后出现失效链接。
+本目录提交常用 `skill`（技能）的真实文件目录，避免其他机器 clone（克隆）后出现本机绝对路径软连接失效。
 
-## 本地重建
+## 当前包含
 
-在 Windows（微软视窗系统）中运行：
-
-```powershell
-.\tools\scripts\Link-Skills.ps1
-```
-
-默认尝试链接：
-
-- `scrapling`
-- `spreadsheets`
+- `external-skills-hub`
 - `markitdown-skill`
 - `multi-search-engine`
-- `external-skills-hub`
+- `scrapling`
 - `skill-creator`
+- `spreadsheets`
+
+## 维护要求
+
+- 更新技能目录前先确认来源路径可信。
+- 上传前扫描真实密钥、`token`（令牌）、`cookie`（会话凭据）等敏感信息。
+- `tools/scripts/Link-Skills.ps1` 是旧版软连接重建脚本；当前仓库默认提交真实技能目录。

@@ -31,7 +31,7 @@ foreach ($required in @(
 foreach ($skill in @('scrapling', 'spreadsheets', 'markitdown-skill', 'multi-search-engine', 'external-skills-hub', 'skill-creator')) {
   $path = Join-Path $Root "tools\skills\$skill"
   if (-not (Test-Path -LiteralPath $path)) {
-    Write-Output "WARN`tmissing local skill link: tools\skills\$skill; run tools\scripts\Link-Skills.ps1 to rebuild"
+    Write-Output "WARN`tmissing skill directory: tools\skills\$skill"
   }
 }
 

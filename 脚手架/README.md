@@ -38,7 +38,7 @@ Windows（微软视窗系统）也可以使用 PowerShell（微软命令行脚�
 
 - `AGENTS.md`：工作区级规则入口。
 - `doc/`：工作区项目地图和进展记录。
-- `tools/`：工具库，包含技能软连接、复用脚本和工作区专用技能。
+- `tools/`：工具库，包含技能实体目录、复用脚本和工作区专用技能。
 - `templates/standard-scraping-project/`：标准爬取子项目模板。
 - `examples/`：Scrapling（网页抓取库）最小示例。
 - `.github/workflows/validate.yml`：GitHub Actions（GitHub 自动化流程）结构校验。
