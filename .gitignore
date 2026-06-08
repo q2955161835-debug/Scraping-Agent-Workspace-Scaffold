@@ -7,8 +7,8 @@ __pycache__/
 .cache/
 try/*
 **/try/*
-!脚手架/templates/**/try/
-!脚手架/templates/**/try/.gitkeep
+!scaffolding/templates/**/try/
+!scaffolding/templates/**/try/.gitkeep
 !try/.gitkeep
 dist/
 build/

@@ -17,7 +17,7 @@
 ```powershell
 git clone https://github.com/q2955161835-debug/Scraping-Agent-Workspace-Scaffold.git
 cd Scraping-Agent-Workspace-Scaffold
-cd 脚手架
+cd scaffolding
 python -m pip install -e .[dev,scraping]
 python tools/scripts/scaffold_project.py "示例目标数据" --root ..
 python tools/scripts/create_variable_template.py "../示例目标数据"
@@ -32,7 +32,7 @@ Windows（微软视窗系统）也可以使用 PowerShell（微软命令行脚�
 .\tools\scripts\Test-ScrapingWorkspace.ps1
 ```
 
-若在当前工作区外壳内调用 PowerShell（微软命令行脚本）脚本，先进入 `脚手架/`，并把子项目根目录参数指向上一级工作区。
+若在当前工作区外壳内调用 PowerShell（微软命令行脚本）脚本，先进入 `scaffolding/`，并把子项目根目录参数指向上一级工作区。
 
 ## 核心目录
 

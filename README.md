@@ -2,9 +2,11 @@
 
 ![Scraping Agent Workspace Scaffold cover（数据爬取 Agent 工作区脚手架封面）](doc/assets/cover.png)
 
+[English version](README.en.md)
+
 Scraping Agent Workspace Scaffold（数据爬取 Agent 工作区脚手架）是一套面向结构化数据采集项目的工作区模板。它帮助使用者在开始爬虫之前先建立字段口径、目录边界、来源质量分级和交付验收规则，再通过内置脚本和技能快速创建可追踪、可复核、可持续维护的数据爬取项目。
 
-这不是一个只放代码示例的爬虫仓库，而是一个完整的工作区组织方案：根目录保存项目治理制度，`脚手架/` 保存可复用模板、脚本、技能和示例，用户自己的采集目标作为第一层子项目放在工作区根目录。
+这不是一个只放代码示例的爬虫仓库，而是一个完整的工作区组织方案：根目录保存项目治理制度，`scaffolding/` 保存可复用模板、脚本、技能和示例，用户自己的采集目标作为第一层子项目放在工作区根目录。
 
 ## 适合谁使用
 
@@ -24,7 +26,7 @@ Scraping Agent Workspace Scaffold（数据爬取 Agent 工作区脚手架）是�
 
 工作区管理制度位于根目录 [AGENTS.md](AGENTS.md)。它规定所有项目必须遵守的目录、质量、备份、进展和验收规则。
 
-具体执行工作流位于 [脚手架/tools/workspace-scraping/SKILL.md](脚手架/tools/workspace-scraping/SKILL.md)。它把根目录制度落地为可执行步骤，包括创建子项目、生成变量确认表、选择抓取方式、组织数据文件和验收交付。
+具体执行工作流位于 [scaffolding/tools/workspace-scraping/SKILL.md](scaffolding/tools/workspace-scraping/SKILL.md)。它把根目录制度落地为可执行步骤，包括创建子项目、生成变量确认表、选择抓取方式、组织数据文件和验收交付。
 
 ### Scrapling 优先
 
@@ -48,7 +50,7 @@ Scraping Agent Workspace Scaffold（数据爬取 Agent 工作区脚手架）是�
 │  ├─ 进展记录.md
 │  └─ assets/
 │     └─ cover.png
-├─ 脚手架/
+├─ scaffolding/
 │  ├─ README.md
 │  ├─ AGENTS.md
 │  ├─ examples/
@@ -75,7 +77,7 @@ Scraping Agent Workspace Scaffold（数据爬取 Agent 工作区脚手架）是�
 | `doc/进展记录.md` | 阶段性进展记录；发布模板时可保持为空 |
 | `.env.example` | 环境变量示例账本，只放占位值和说明 |
 | `.gitignore` | 忽略真实环境变量、缓存和临时文件 |
-| `脚手架/` | 可复用脚手架能力目录 |
+| `scaffolding/` | 可复用脚手架能力目录 |
 | `try/` | 工作区级临时验证目录，只提交空占位文件 |
 | `目标项目/` | 用户自己的独立采集目标 |
 
@@ -83,13 +85,13 @@ Scraping Agent Workspace Scaffold（数据爬取 Agent 工作区脚手架）是�
 
 | 路径 | 用途 |
 | --- | --- |
-| `脚手架/tools/workspace-scraping/SKILL.md` | 工作区爬取执行工作流 |
-| `脚手架/tools/scripts/` | 创建子项目、生成变量表、校验结构的脚本 |
-| `脚手架/tools/skills/` | 内置技能实体目录 |
-| `脚手架/templates/standard-scraping-project/` | 标准采集子项目模板 |
-| `脚手架/examples/` | `Scrapling`（网页抓取库）示例 |
-| `脚手架/tests/` | 脚手架结构测试 |
-| `脚手架/.github/workflows/` | GitHub Actions（GitHub 自动化流程）校验模板 |
+| `scaffolding/tools/workspace-scraping/SKILL.md` | 工作区爬取执行工作流 |
+| `scaffolding/tools/scripts/` | 创建子项目、生成变量表、校验结构的脚本 |
+| `scaffolding/tools/skills/` | 内置技能实体目录 |
+| `scaffolding/templates/standard-scraping-project/` | 标准采集子项目模板 |
+| `scaffolding/examples/` | `Scrapling`（网页抓取库）示例 |
+| `scaffolding/tests/` | 脚手架结构测试 |
+| `scaffolding/.github/workflows/` | GitHub Actions（GitHub 自动化流程）校验模板 |
 
 ## 快速开始
 
@@ -105,7 +107,7 @@ cd Scraping-Agent-Workspace-Scaffold
 进入脚手架目录后安装开发和抓取依赖：
 
 ```powershell
-cd .\脚手架
+cd .\scaffolding
 python -m pip install -e .[dev,scraping]
 ```
 
@@ -125,7 +127,7 @@ python -m pytest
 
 ### 4. 创建采集子项目
 
-从 `脚手架/` 目录创建一个目标项目到上一级工作区根目录：
+从 `scaffolding/` 目录创建一个目标项目到上一级工作区根目录：
 
 ```powershell
 python tools\scripts\scaffold_project.py "示例目标数据" --root ..
@@ -165,7 +167,7 @@ PowerShell（微软命令行脚本）版本：
 
 ## 子 Agent 调度
 
-多来源项目应使用子 `Agent`（代理）调度流程，把官方源、官方新闻、第三方新闻、文献提取、逆向计算、弱来源核验和最终汇总拆开处理。详细流程见 [脚手架/tools/workspace-scraping/references/channel-playbook.md](脚手架/tools/workspace-scraping/references/channel-playbook.md)。
+多来源项目应使用子 `Agent`（代理）调度流程，把官方源、官方新闻、第三方新闻、文献提取、逆向计算、弱来源核验和最终汇总拆开处理。详细流程见 [scaffolding/tools/workspace-scraping/references/channel-playbook.md](scaffolding/tools/workspace-scraping/references/channel-playbook.md)。
 
 调度手册包含：
 
@@ -218,7 +220,7 @@ PowerShell（微软命令行脚本）版本：
 
 ## 内置技能
 
-`脚手架/tools/skills/` 提交的是技能真实文件目录，不依赖本机软连接。
+`scaffolding/tools/skills/` 提交的是技能真实文件目录，不依赖本机软连接。
 
 | 技能目录 | 用途 |
 | --- | --- |
@@ -240,7 +242,7 @@ PowerShell（微软命令行脚本）版本：
 - 原始数据和原始文件可回溯。
 - 子项目文档记录字段口径、目录扩展、采集策略和异常情况。
 
-详细验收清单见 [脚手架/tools/workspace-scraping/references/dataset-acceptance.md](脚手架/tools/workspace-scraping/references/dataset-acceptance.md)。
+详细验收清单见 [scaffolding/tools/workspace-scraping/references/dataset-acceptance.md](scaffolding/tools/workspace-scraping/references/dataset-acceptance.md)。
 
 ## 环境变量
 
@@ -258,4 +260,4 @@ PowerShell（微软命令行脚本）版本：
 
 ## 许可证
 
-本项目使用 [MIT License（麻省理工许可证）](脚手架/LICENSE)。
+本项目使用 [MIT License（麻省理工许可证）](scaffolding/LICENSE)。
