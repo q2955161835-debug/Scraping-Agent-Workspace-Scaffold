@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "scraping-agent-workspace-scaffold"
+version = "0.1.0"
+description = "Scraping Agent Workspace Scaffold for structured data collection projects."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [
+  { name = "q2955161835-debug" }
+]
+dependencies = []
+
+[project.optional-dependencies]
+scraping = [
+  "scrapling[mcp,playwright]",
+]
+dev = [
+  "pytest>=8",
+  "PyYAML>=6",
+]
+
+[tool.setuptools]
+py-modules = []
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]

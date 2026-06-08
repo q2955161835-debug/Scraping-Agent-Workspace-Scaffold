@@ -1,0 +1,29 @@
+name: Validate Scaffold
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Validate workspace structure
+        run: python tools/scripts/validate_workspace.py .
+
+      - name: Test project scaffolding
+        run: |
+          python tools/scripts/scaffold_project.py "CI示例目标" --root try
+          python tools/scripts/create_variable_template.py "try/CI示例目标"
+          python tools/scripts/validate_workspace.py .
+
+      - name: Run tests
+        run: python -m pytest

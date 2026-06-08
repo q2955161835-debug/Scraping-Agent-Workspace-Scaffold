@@ -7,3 +7,12 @@ __pycache__/
 .cache/
 try/
 **/try/*
+!templates/**/try/
+!templates/**/try/.gitkeep
+dist/
+build/
+*.egg-info/
+.venv/
+venv/
+tools/skills/*
+!tools/skills/README.md
