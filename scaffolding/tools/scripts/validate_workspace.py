@@ -18,8 +18,10 @@ REQUIRED_FILES = [
     "tools/skills/README.md",
     "tools/workspace-scraping/SKILL.md",
     "tools/workspace-scraping/references/channel-playbook.md",
+    "tools/workspace-scraping/references/subagent-prompt-templates.md",
     "tools/workspace-scraping/references/dataset-acceptance.md",
     "templates/standard-scraping-project/doc/项目地图.md",
+    "templates/standard-scraping-project/doc/任务清单.md",
 ]
 
 REQUIRED_TOOLS = [

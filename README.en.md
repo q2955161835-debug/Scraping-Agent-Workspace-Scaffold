@@ -8,6 +8,8 @@ Scraping Agent Workspace Scaffold is a workspace template for structured data co
 
 This project is designed for teams that use agents or automation workflows to collect, validate, clean, and deliver data from multiple channels. Instead of treating scraping as a single script, it treats scraping as a managed data project with traceable sources, reviewable assumptions, and repeatable handoff rules.
 
+In one real data project for 2023 ecological indicators across Hebei cities, a conventional crawler workflow reached about 21% completion. After moving the work into this scaffold and using variable modeling, source grading, archived raw materials, fill-audit records, and stable handoff rules, the main table reached 98/143 filled cells, or 68.53% completion, roughly 69%.
+
 ## Who This Is For
 
 - Researchers, analysts, and automation engineers who manage multiple data collection targets.
@@ -27,6 +29,14 @@ The first step of a data collection project is not writing a crawler. It is defi
 Workspace governance lives in [AGENTS.md](AGENTS.md). It defines the rules for folder layout, Git checkpoints, backups, environment files, progress records, source grading, and delivery checks.
 
 Executable workflow guidance lives in [scaffolding/tools/workspace-scraping/SKILL.md](scaffolding/tools/workspace-scraping/SKILL.md). It turns the governance rules into concrete actions: creating target projects, generating variable tables, dispatching channel subagents, selecting scraping tools, organizing raw files, and validating deliverables.
+
+### Task Ledger Prevents Duplicate Crawls
+
+Each target project includes `doc/任务清单.md`, a task ledger for subagents, source grade, variable, target URL or file, dedupe key, status, output location, and failure notes. Before dispatch, the agent checks the ledger. Completed and reusable pages are not crawled again; failed or review-needed pages keep their retry reason.
+
+### Prompt Template Injection
+
+Subagent dispatch uses [subagent-prompt-templates.md](scaffolding/tools/workspace-scraping/references/subagent-prompt-templates.md). Official source, official news, third-party news, literature extraction, reverse calculation, weak-source verification, and aggregation each have a dedicated template. The dispatcher injects the matching template by task goal and source grade instead of mixing different source levels into one vague prompt.
 
 ### Scrapling Is the Primary Scraping Path
 
@@ -156,14 +166,15 @@ PowerShell version:
 1. Create a target project.
 2. Build a variable confirmation table.
 3. Confirm field names, meanings, units, types, source priorities, required status, cleaning rules, and acceptable missing conditions.
-4. Dispatch channel subagents by source type.
-5. Collect data with Scrapling and supporting tools.
-6. Store raw structured results in `原始数据/`.
-7. Store downloaded files, snapshots, screenshots, reports, and PDFs in `原始文件/`.
-8. Store temporary experiments in `try/`.
-9. Clean, merge, deduplicate, and grade source quality.
-10. Place the latest deliverable in the target project root.
-11. Update project documentation as needed.
+4. Create or update `doc/任务清单.md` with URLs, files, API endpoints, dedupe keys, statuses, and output locations.
+5. Dispatch channel subagents by source type and inject the matching prompt template.
+6. Collect data with Scrapling and supporting tools.
+7. Store raw structured results in `原始数据/`.
+8. Store downloaded files, snapshots, screenshots, reports, and PDFs in `原始文件/`.
+9. Store temporary experiments in `try/`.
+10. Clean, merge, deduplicate, and grade source quality.
+11. Place the latest deliverable in the target project root.
+12. Update project documentation as needed.
 
 ## Subagent Dispatch
 
@@ -174,7 +185,8 @@ The dispatch playbook covers:
 - When multiple subagents are required.
 - Required inputs before dispatch.
 - Variable-to-channel mapping.
-- Subagent input and output templates.
+- Subagent prompt template injection.
+- Task-ledger dedupe rules.
 - Parallel execution and dependency rules.
 - Source conflict resolution.
 - Missing required field recovery.
@@ -196,6 +208,7 @@ target-project/
 | Directory | Purpose |
 | --- | --- |
 | `doc/` | Target documentation, variable notes, scraping strategy, and progress records |
+| `doc/任务清单.md` | Task ledger for URLs, files, dedupe keys, statuses, output locations, and failures |
 | `旧数据/` | Historical versions replaced by newer deliverables |
 | `原始数据/` | Raw structured scraping results |
 | `原始文件/` | Downloaded files, snapshots, screenshots, reports, and PDFs |
@@ -231,11 +244,16 @@ Guidelines:
 | `external-skills-hub` | External skill routing |
 | `skill-creator` | Create and maintain skill files |
 
+## Case Study
+
+The Hebei 2023 ecological indicators project covered 11 prefecture-level cities and 13 ecological indicators. After migration into this scaffold, the project kept one root deliverable workbook, archived scripts and raw materials under stable folders, and preserved fill-audit records for later review. The main table improved from about 21% completion in a conventional crawler workflow to 98/143 filled cells, or 68.53%, roughly 69%.
+
 ## Acceptance Criteria
 
 A target data project should satisfy at least:
 
 - Variables have been confirmed.
+- The task ledger records dedupe keys, statuses, output locations, and failure notes.
 - Field sources are traceable.
 - Source quality grades are present.
 - The latest deliverable is in the target project root.
